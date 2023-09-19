@@ -14,9 +14,9 @@ void draw() {
 }
 
 void initializeButtonValues() {
-  for (int row = 0; row < 3; row++) {
+  for (int row = 0; row < 4; row++) {
     for (int coloumn = 0; coloumn < 3; coloumn++) {
-      buttonValues[row][coloumn] = (3-row) * 3 + (coloumn + 1);
+      buttonValues[row][coloumn] = (2-row) * 3 + (coloumn + 1);
     }
   }
   buttonValues[3][1] = 0;
@@ -25,7 +25,7 @@ void drawNumberPad() {
   float rectWidth = width / 3;
   float rectHeight = height / 4;
 
-  for (int row = 0; row < 3; row++) {
+  for (int row = 0; row < 4 && row != 5  ; row++) {
     for (int coloumn = 0; coloumn < 3; coloumn++) {
       float x = coloumn * rectWidth;
       float y = row * rectHeight;
@@ -42,7 +42,7 @@ void drawNumberPad() {
 }
 
 void mousePressed() {
-  for (int row = 0; row < 3; row++) {
+  for (int row = 0; row < 4; row++) {
     for (int coloumn = 0; coloumn < 3; coloumn++) {
       float x = coloumn * (width/3);
       float y = row * (height /4);
