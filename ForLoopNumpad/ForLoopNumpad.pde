@@ -1,9 +1,11 @@
 int[][] buttonValues = new int[4][3];
 boolean[][] buttonPressed = new boolean[4][3];
 int totalValue = 0;
+int numpadWidth = 400;
+int numpadHeight = 400;
 
 void setup() {
-  size(400, 400);
+  size(800, 800);
   initializeButtonValues();
   calculateTotalValue();
 }
@@ -22,13 +24,13 @@ void initializeButtonValues() {
   buttonValues[3][1] = 0;
 }
 void drawNumberPad() {
-  float rectWidth = width / 3;
-  float rectHeight = height / 4;
+  float rectWidth = numpadWidth / 3;
+  float rectHeight = numpadHeight / 4;
 
   for (int row = 0; row < 4 && row != 5  ; row++) {
     for (int coloumn = 0; coloumn < 3; coloumn++) {
-      float x = coloumn * rectWidth;
-      float y = row * rectHeight;
+      float x = coloumn * rectWidth + width / 4;
+      float y = row * rectHeight + height / 4;
       boolean isMouseOver = mouseX >= x && mouseX <= x + rectWidth && mouseY >= y && mouseY <= y + rectHeight;
       fill(buttonPressed[row][coloumn] ? color(0, 255, 0) : isMouseOver ? color(200) : color(255));
       rect(x, y, rectWidth, rectHeight);
@@ -44,9 +46,9 @@ void drawNumberPad() {
 void mousePressed() {
   for (int row = 0; row < 4; row++) {
     for (int coloumn = 0; coloumn < 3; coloumn++) {
-      float x = coloumn * (width/3);
-      float y = row * (height /4);
-      if (mouseX >= x && mouseX <= x + width / 3 && mouseY >= y && mouseY <= y + height /4) {
+      float x = coloumn * (numpadWidth/3) + width / 4;
+      float y = row * (numpadHeight /4) + height / 4;
+      if (mouseX >= x && mouseX <= x + numpadWidth / 3 && mouseY >= y && mouseY <= y + numpadHeight /4) {
         buttonPressed[row][coloumn] = !buttonPressed[row][coloumn];
         calculateTotalValue();
       }
